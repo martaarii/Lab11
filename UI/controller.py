@@ -11,17 +11,23 @@ class Controller:
         self._listColor = []
 
     def fillDD(self):
-        pass
-
+        colori = self._model.get_all_color()
+        for color in colori:
+            self._view._ddcolor.options.append(ft.dropdown.Option(color))
+        self._view.update_page()
 
     def handle_graph(self, e):
-        pass
-
-
+        colore = self._view._ddcolor.value
+        anno = self._view._ddyear.value
+        self._model.get_grafo(anno, colore)
+        num_nodi = self._model.num_vertici()
+        num_archi = self._model.num_archi()
+        self._view.txtOut.controls.append(ft.Text(f"Numero archi: {num_archi}\n"
+                                                  f"Numero nodi: {num_nodi}"))
+        self._view.update_page()
 
     def fillDDProduct(self):
         pass
-
 
     def handle_search(self, e):
         pass
